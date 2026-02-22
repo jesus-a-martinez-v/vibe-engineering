@@ -1,0 +1,30 @@
+<job>
+    <task>
+Fix [specific bug description]
+</task>
+
+<context>
+<bug_symptoms>[What's happening]</bug_symptoms>
+<expected_behavior>[What should happen]</expected_behavior>
+<system_state>[Relevant system information]</system_state>
+</context>
+
+<existing_code>
+[Code where bug occurs]
+</existing_code>
+
+<requirements>
+- Fix root cause, not symptoms
+- Add test case preventing regression
+- Maintain all existing functionality
+</requirements>
+
+<thinking>
+What could cause this symptom?
+1. [Hypothesis 1]
+2. [Hypothesis 2]
+
+How to verify the fix:
+[Test approach]
+</thinking>
+</job>

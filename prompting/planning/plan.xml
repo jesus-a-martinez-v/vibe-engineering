@@ -1,0 +1,29 @@
+<job>
+    <role>Senior Python developer following SOLID principles</role>
+<task>
+Design architecture for a CLI expense tracker application
+</task>
+<context>
+<application_type>Command-line personal finance tool</application_type>
+<tech_stack>Python 3.8+, CSV file storage</tech_stack>
+<user_workflow>Load transactions → Select report mode → View summary</user_workflow>
+</context>
+    <requirements>
+<functional_requirements>
+- Support multiple report modes: summary by category, monthly totals, etc.
+- Load transaction data from CSV files (date, description, category, amount)
+- Display formatted reports in the terminal
+- Track totals and provide accurate summaries
+</functional_requirements>
+<extensibility_requirements>
+- Easy to add new report modes without modifying existing code
+- Support for different data formats (e.g., JSON) in the future
+- Configurable report formatting and display
+</extensibility_requirements>
+</requirements>
+<constraints>
+<architecture_principles>Follow SOLID principles explicitly</architecture_principles>
+<complexity_limits>Keep each module under 200 lines, single responsibility</complexity_limits>
+<dependencies>Standard library only, no external frameworks</dependencies>
+</constraints>
+</job>

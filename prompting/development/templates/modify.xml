@@ -1,0 +1,20 @@
+<job>
+    <task>
+[What modification is needed]
+</task>
+
+<existing_code>
+[Complete current implementation]
+</existing_code>
+
+<requirements>
+- [New functionality to add]
+- Preserve: [Explicitly list all existing functionality]
+</requirements>
+
+<constraints>
+- No signature changes
+- No new dependencies
+- [Other limitations]
+</constraints>
+</job>

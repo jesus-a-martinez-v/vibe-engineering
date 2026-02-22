@@ -1,0 +1,21 @@
+<job>
+    <role>Senior Python test engineer</role>
+<task>Generate comprehensive test scenarios for ReportEngine class</task>
+<context>
+<class_under_test>ReportEngine with transactions, mode strategy, and UI interface</class_under_test>
+<test_categories>
+- Happy path scenarios (normal report generation flow)
+- Error conditions (empty transactions, invalid data)
+- Edge cases (single transaction, interrupted report)
+- Integration points (mode strategy, UI interface)
+- Performance scenarios (large transaction sets)
+</test_categories>
+</context>
+<requirements>
+- Use pytest framework with fixtures
+- Include descriptive test names explaining what's being tested
+- Mock external dependencies (UI, file system)
+- Test both success and failure paths
+- Verify expected behaviors and error messages
+</requirements>
+</job>
