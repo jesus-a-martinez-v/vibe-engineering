@@ -1,0 +1,140 @@
+# Project Context
+<!-- FILL IN: Brief description of what this project does and its domain. -->
+
+## Stack
+<!-- FILL IN: e.g. FastAPI + PostgreSQL + Redis | Python 3.12 -->
+
+## Architecture Overview
+<!-- FILL IN: e.g. "Layered: routers → services → repositories → models. No business logic in routers or models." -->
+
+---
+
+# Commands
+
+## Install
+```bash
+# FILL IN: e.g. pip install -e ".[dev]" or uv sync
+```
+
+## Run
+```bash
+# FILL IN
+```
+
+## Test
+```bash
+# FILL IN: e.g. pytest -x --tb=short
+```
+
+## Lint / Type Check
+```bash
+# FILL IN: e.g. ruff check . && mypy .
+```
+
+## Format
+```bash
+# FILL IN: e.g. ruff format .
+```
+
+---
+
+# How You Must Work
+
+## General Behavior
+- Prefer clarity over cleverness in every solution you produce.
+- Make small, focused changes. Address one concern per task.
+- Before writing any code: think through the problem, state your approach, identify edge cases, and list every file you will touch. Wait for confirmation before proceeding.
+- If you are unsure about intended behavior, ask. Do not infer and proceed.
+- Never modify files outside the scope of the current task without explicit instruction.
+
+## SOLID
+- Give every class and function a single reason to change. If you need "and" to describe what something does, split it.
+- Extend behavior through composition and dependency injection. Do not modify existing classes to add new behavior.
+- Write subtypes that are fully substitutable for their base types. Use `Protocol` when only behavior matters, not shared state.
+- Define narrow `Protocol` interfaces. Do not force callers to depend on methods they do not use.
+- Make high-level modules depend on abstractions. Never instantiate concrete collaborators inside business logic — inject them.
+
+## Type Hints
+- Add type hints to every function signature and class attribute. No exceptions.
+- Always declare return types explicitly, including `-> None`.
+- Never use `Any` unless wrapping an untyped third-party boundary. When you must, add a comment explaining why.
+- Use `TypeVar`, `Generic`, and `Protocol` for reusable abstractions.
+- Prefer `X | None` over `Optional[X]`.
+- Resolve all `mypy` strict mode errors. Never suppress them without a written explanation in the same line comment.
+
+## Error Handling
+- Never use bare `except:`. Always name the exception type.
+- Never silently swallow exceptions. Always log or re-raise.
+- Define domain-specific exception classes that carry context. Do not raise raw `ValueError` or `RuntimeError` from business logic.
+- At service boundaries, use explicit error types rather than relying on exceptions for expected failure states.
+- Wrap all external I/O (network, filesystem, database) in explicit error handling.
+
+## Functions and Classes
+- Keep functions focused on one thing. Question any function that exceeds ~30 lines.
+- Never write functions with more than 4 positional parameters. Group related arguments into a dataclass or `TypedDict`.
+- Never use mutable default arguments.
+- Use `dataclasses` or `pydantic` models for structured data. Never pass raw dicts across boundaries.
+- If a class has no state, use module-level functions instead.
+- Avoid deep inheritance. Default to composition and protocols.
+
+## Immutability and State
+- Use `frozen=True` on dataclasses wherever the data should not change after creation.
+- Treat shared mutable state as a design problem. Isolate it explicitly and flag it when you introduce it.
+- Separate pure functions from functions with side effects. Label side-effectful functions clearly in their docstring.
+
+## Imports
+- Use absolute imports only.
+- Order imports: stdlib → third-party → internal, with a blank line between each group.
+- Never use star imports.
+- Treat circular imports as a design error. Resolve them by restructuring, not by moving imports into function scope.
+
+## Testing
+- Always follow TDD: write the failing test first, then write the minimum code to make it pass, then refactor. Never write implementation code without a corresponding failing test already in place.
+- Every test must be meaningful. Never write a test just to increase coverage. A test that does not verify real behavior is worse than no test — it creates false confidence.
+- For every function or behavior, cover: the happy path, edge cases (empty input, boundary values, None), and failure paths (exceptions, invalid input, external errors). A test suite that only covers the happy path is incomplete.
+- Structure every test as Arrange / Act / Assert with one logical assertion.
+- Use `pytest` fixtures for setup. Do not use `setUp`/`tearDown` patterns.
+- Mock at the boundary only — external I/O, network calls, third-party services. Never mock internal application logic.
+- Name tests after behavior: `test_user_cannot_log_in_with_expired_token`, not `test_login_fail`.
+- Parametrize edge cases instead of duplicating test bodies.
+- Coverage is a signal, not a goal. 80%+ on business logic and 100% on critical paths (auth, payments, data integrity) — but only if those tests are meaningful.
+
+## Documentation
+- Add docstrings to all public functions, classes, and modules.
+- Write docstrings that explain *why* and *what*, not *how*. The code explains how.
+- Add inline comments to complex business logic that explain the reasoning, not the mechanics.
+- Every `TODO` or `FIXME` must include a ticket or issue reference. Do not leave orphaned comments.
+
+## Security
+- Never log secrets, tokens, or PII.
+- Never hardcode credentials. Use environment variables or a secrets manager.
+- Validate and sanitize all external input before it reaches business logic.
+- Always use parameterized queries. Never interpolate user input into query strings.
+- Never introduce a new dependency without stating why the existing stack cannot solve the problem.
+
+## Performance
+- Write correct code first. Do not optimize preemptively.
+- When asked to optimize, profile before changing anything and show the evidence.
+- Identify and fix N+1 query patterns at the data access layer. Treat them as bugs.
+- Put expensive operations (external calls, heavy computation) behind abstractions that can be cached or made async.
+
+---
+
+# Hard Limits
+- Never reduce test coverage to make a task easier.
+- Never suppress linter or type checker warnings without an explanatory comment on the same line.
+- Never rename, restructure, or refactor code that is not directly related to the current task.
+- Never add a dependency without justification.
+- Never produce code you cannot walk through line by line if asked.
+
+---
+
+# Definition of Done
+Before considering any task complete, run the following and verify all pass:
+1. `pytest -x --tb=short` — all tests pass.
+2. `mypy --strict .` — no type errors.
+3. `black --check .` — no formatting violations.
+4. `ruff check .` — no lint errors.
+5. Any new `# type: ignore` or `# noqa` has an explanatory comment.
+6. All new functionality has corresponding tests written before the implementation.
+7. No files outside the task scope were modified.
