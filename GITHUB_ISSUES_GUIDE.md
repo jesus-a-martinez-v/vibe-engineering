@@ -7,7 +7,6 @@ Use this guide every session. No exceptions.
 ## 1. CORE PRINCIPLES
 
 - **GitHub Issues** — source of truth. Every task, bug, and decision lives here.
-- **GitHub Projects (Kanban)** — the cockpit. Reflects real-time state of all work.
 
 > **No issue, no work.** Never write code or make changes without a corresponding open issue.
 
@@ -18,7 +17,7 @@ Use this guide every session. No exceptions.
 Run this sequence before any planning or implementation:
 
 1. **Search** — use `list_issues` to check if a matching issue already exists (match by title, area, and intent).
-2. **Not found** → Create it (see Section 3), add to board under **Backlog**, move to **In Progress**.
+2. **Not found** → Create it (see Section 3).
 3. **Found** → Update scope/criteria if needed, add a comment on what you're about to do and why.
 
 Applies to all tasks — including small changes and quick fixes.
@@ -57,9 +56,9 @@ Constraints, relevant files, links.
 ```
 
 ### Metadata
-- **Label** — most specific default label that fits (see Section 8)
+- **Label** — most specific default label that fits (see Section 7)
 - **Milestone** — assign to active milestone if one exists
-- **Assignee** — yourself or blank; never invent a name
+- **Assignee** — always assign to `jesus-a-martinez-v`; no exceptions
 
 ---
 
@@ -80,30 +79,16 @@ If work is paused or abandoned, say so in a comment.
 
 Close only when all acceptance criteria are met and work is merged or verified.
 
-1. Add a closing comment summarizing what was done.
-2. Reference the PR: `Closed by #<PR>`.
-3. Use a closing keyword in the PR body to auto-close (see Section 7).
+1. Check off every acceptance criterion in the issue body.
+2. Add a closing comment summarizing what was done.
+3. Reference the PR: `Closed by #<PR>`.
+4. Use a closing keyword in the PR body to auto-close (see Section 6).
 
 Never close speculatively. Incomplete work = open issue.
 
 ---
 
-## 6. KANBAN BOARD
-
-Keep columns in sync at all times:
-
-| Column | When |
-|---|---|
-| **Backlog** | Issue created, work not started |
-| **In Progress** | Work started — move here before writing any code |
-| **In Review** | PR is open |
-| **Done** | Issue closed and merged |
-
-Never leave an issue off the board.
-
----
-
-## 7. PULL REQUESTS
+## 6. PULL REQUESTS
 
 Create a PR as soon as a branch has reviewable code. Use **Draft PR** if not complete.
 
@@ -138,7 +123,7 @@ What was tested and what the reviewer should verify.
 
 ---
 
-## 8. LABELS
+## 7. LABELS
 
 | Label | Use when |
 |---|---|
@@ -153,7 +138,7 @@ What was tested and what the reviewer should verify.
 
 ---
 
-## 9. MILESTONES
+## 8. MILESTONES
 
 - Assign to active milestone at issue creation.
 - Check existing milestones with `list_milestones` before assigning.
@@ -161,24 +146,24 @@ What was tested and what the reviewer should verify.
 
 ---
 
-## 10. SESSION CHECKLIST
+## 9. SESSION CHECKLIST
 
 **Start:**
-- [ ] Review board (`list_project_items`) and open issues (`list_issues`).
+- [ ] Review open issues (`list_issues`).
 - [ ] Run Initialization (Section 2) for each task you'll work on.
 
+
 **During:**
-- [ ] Create issues for anything new; add to board immediately.
-- [ ] Keep board columns in sync as status changes.
+- [ ] Create issues for anything new.
 
 **End:**
 - [ ] Comment progress on every issue touched.
-- [ ] Close completed issues and move to **Done**.
+- [ ] Close completed issues.
 - [ ] Label new blockers `help wanted` with an explanatory comment.
 
 ---
 
-## 11. MCP OPERATIONS REFERENCE
+## 10. MCP OPERATIONS REFERENCE
 
 | Operation | When |
 |---|---|
@@ -190,7 +175,4 @@ What was tested and what the reviewer should verify.
 | `close_issue` | Work complete and verified |
 | `create_pull_request` | Branch ready for review |
 | `update_pull_request` | Status or description changes |
-| `list_project_items` | Session start board review |
-| `add_item_to_project` | After creating an issue |
-| `update_project_item_field` | Moving card between columns |
 | `list_milestones` | Before assigning a milestone |
