@@ -1,0 +1,196 @@
+# GITHUB ISSUES GUIDE FOR AI DEV AGENTS
+
+Use this guide every session. No exceptions.
+
+---
+
+## 1. CORE PRINCIPLES
+
+- **GitHub Issues** — source of truth. Every task, bug, and decision lives here.
+- **GitHub Projects (Kanban)** — the cockpit. Reflects real-time state of all work.
+
+> **No issue, no work.** Never write code or make changes without a corresponding open issue.
+
+---
+
+## 2. INITIALIZATION — BEFORE EVERY TASK
+
+Run this sequence before any planning or implementation:
+
+1. **Search** — use `list_issues` to check if a matching issue already exists (match by title, area, and intent).
+2. **Not found** → Create it (see Section 3), add to board under **Backlog**, move to **In Progress**.
+3. **Found** → Update scope/criteria if needed, add a comment on what you're about to do and why.
+
+Applies to all tasks — including small changes and quick fixes.
+
+---
+
+## 3. ISSUE RULES
+
+### Scope — Atomic Tasks Only
+One issue = one concrete, independently completable outcome. If you can't describe the done state in one sentence, break it down further.
+
+**❌ Too broad:** `[Auth] Build login feature` · `[DB] Design schema`
+
+**✅ Correctly scoped:** `[DB] Create users table` · `[Auth] Implement POST /auth/login` · `[Auth] Add auth middleware`
+
+### Title Format
+`[Area] Action-oriented description`
+- `[DB] Add index on users.email`
+- `[API] Fix race condition in user upsert`
+
+### Body Template
+```
+## Summary
+What this is and why it matters.
+
+## Scope
+- What's included.
+- What's explicitly out of scope (if relevant).
+
+## Acceptance Criteria
+- [ ] Criterion 1
+- [ ] Criterion 2
+
+## Notes
+Constraints, relevant files, links.
+```
+
+### Metadata
+- **Label** — most specific default label that fits (see Section 8)
+- **Milestone** — assign to active milestone if one exists
+- **Assignee** — yourself or blank; never invent a name
+
+---
+
+## 4. UPDATING ISSUES
+
+Update whenever:
+- **Starting work** — comment with branch name
+- **Scope changes** — edit the body; never silently widen or shrink scope
+- **Blocked** — comment explaining blocker, apply `help wanted`
+- **Subtask done** — check off the acceptance criterion
+- **Related issue found** — add `Related to #N` or `Blocked by #N`
+
+If work is paused or abandoned, say so in a comment.
+
+---
+
+## 5. CLOSING ISSUES
+
+Close only when all acceptance criteria are met and work is merged or verified.
+
+1. Add a closing comment summarizing what was done.
+2. Reference the PR: `Closed by #<PR>`.
+3. Use a closing keyword in the PR body to auto-close (see Section 7).
+
+Never close speculatively. Incomplete work = open issue.
+
+---
+
+## 6. KANBAN BOARD
+
+Keep columns in sync at all times:
+
+| Column | When |
+|---|---|
+| **Backlog** | Issue created, work not started |
+| **In Progress** | Work started — move here before writing any code |
+| **In Review** | PR is open |
+| **Done** | Issue closed and merged |
+
+Never leave an issue off the board.
+
+---
+
+## 7. PULL REQUESTS
+
+Create a PR as soon as a branch has reviewable code. Use **Draft PR** if not complete.
+
+**Title:** `[Area] Short description` (same format as issues)
+
+**Body:**
+```
+## What
+What this PR does.
+
+## Why
+Closes #<issue_number>
+
+## How
+Key implementation decisions.
+
+## Testing
+What was tested and what the reviewer should verify.
+
+## Checklist
+- [ ] Self-reviewed
+- [ ] Tests added/updated
+- [ ] Docs updated if needed
+- [ ] No unrelated changes
+```
+
+**Closing keywords** (auto-close issue on merge):
+- `Closes #N` — general use
+- `Fixes #N` — bugs
+- `Resolves #N` — enhancements
+- `Related to #N` — linked but not closed
+
+---
+
+## 8. LABELS
+
+| Label | Use when |
+|---|---|
+| `bug` | Something is broken |
+| `enhancement` | New feature or improvement |
+| `documentation` | Docs missing or incorrect |
+| `help wanted` | Blocked or needs external input |
+| `question` | Needs clarification before work starts |
+| `duplicate` | Same as an existing issue |
+| `wontfix` | Acknowledged but intentionally skipped |
+| `invalid` | Not a valid issue |
+
+---
+
+## 9. MILESTONES
+
+- Assign to active milestone at issue creation.
+- Check existing milestones with `list_milestones` before assigning.
+- **Never create a milestone unilaterally** — confirm with the user first.
+
+---
+
+## 10. SESSION CHECKLIST
+
+**Start:**
+- [ ] Review board (`list_project_items`) and open issues (`list_issues`).
+- [ ] Run Initialization (Section 2) for each task you'll work on.
+
+**During:**
+- [ ] Create issues for anything new; add to board immediately.
+- [ ] Keep board columns in sync as status changes.
+
+**End:**
+- [ ] Comment progress on every issue touched.
+- [ ] Close completed issues and move to **Done**.
+- [ ] Label new blockers `help wanted` with an explanatory comment.
+
+---
+
+## 11. MCP OPERATIONS REFERENCE
+
+| Operation | When |
+|---|---|
+| `list_issues` | Session start, initialization search |
+| `create_issue` | New task identified |
+| `get_issue` | Before updating an issue |
+| `update_issue` | Scope, labels, milestone changes |
+| `add_issue_comment` | Progress, blockers, start/close notes |
+| `close_issue` | Work complete and verified |
+| `create_pull_request` | Branch ready for review |
+| `update_pull_request` | Status or description changes |
+| `list_project_items` | Session start board review |
+| `add_item_to_project` | After creating an issue |
+| `update_project_item_field` | Moving card between columns |
+| `list_milestones` | Before assigning a milestone |
