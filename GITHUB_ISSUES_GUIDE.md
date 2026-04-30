@@ -1,3 +1,4 @@
+
 # GITHUB ISSUES GUIDE FOR AI DEV AGENTS
 
 Use this guide every session. No exceptions.
@@ -19,6 +20,8 @@ Run this sequence before any planning or implementation:
 1. **Search** — use `list_issues` to check if a matching issue already exists (match by title, area, and intent).
 2. **Not found** → Create it (see Section 3).
 3. **Found** → Update scope/criteria if needed, add a comment on what you're about to do and why.
+4. **Create a branch** — always create a dedicated branch for the issue before writing any code. Name it `issue-<number>/<short-slug>` (e.g. `issue-42/add-users-index`). Never work directly on `main`.
+5. **Comment the branch name** on the issue (covered in Section 4).
 
 Applies to all tasks — including small changes and quick fixes.
 
@@ -35,7 +38,7 @@ One issue = one concrete, independently completable outcome. If you can't descri
 
 ### Title Format
 `[Area] Action-oriented description`
-- `[DB] Add index on users.email`
+- `[DB] Add index on [users.email](http://users.email)`
 - `[API] Fix race condition in user upsert`
 
 ### Body Template
@@ -65,7 +68,7 @@ Constraints, relevant files, links.
 ## 4. UPDATING ISSUES
 
 Update whenever:
-- **Starting work** — comment with branch name
+- **Starting work** — create the branch (see Section 2, step 4), then comment with the branch name
 - **Scope changes** — edit the body; never silently widen or shrink scope
 - **Blocked** — comment explaining blocker, apply `help wanted`
 - **Subtask done** — check off the acceptance criterion
@@ -90,7 +93,7 @@ Never close speculatively. Incomplete work = open issue.
 
 ## 6. PULL REQUESTS
 
-Create a PR as soon as a branch has reviewable code. Use **Draft PR** if not complete.
+Every issue branch **must** be merged into `main` via a PR — never push directly to `main`. Create a PR as soon as a branch has reviewable code. Use **Draft PR** if not complete.
 
 **Title:** `[Area] Short description` (same format as issues)
 
